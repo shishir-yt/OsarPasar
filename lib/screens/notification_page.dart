@@ -35,10 +35,29 @@ class NotificationPage extends StatelessWidget {
                         SizedBox(
                           child: Image.asset("assets/images/notif.png"),
                         ),
-                        SizedBox(
-                          height: 20,
+                        const SizedBox(
+                          height: 30,
                         ),
-                        Text("No Notifications"),
+                        const Text(
+                          "Nothing to see here",
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "Don't worry! If you receive any notifications",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const Text(
+                          "it is shown here.",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                   )

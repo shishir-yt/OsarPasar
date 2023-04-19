@@ -87,51 +87,53 @@ class ItemAddScreen extends StatelessWidget {
             ),
           );
         } else {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: c.selectedItems.value.map((e) {
-              return Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("${e.name}"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {
-                                if (e.itemCount > 1) {
-                                  e.itemCount--;
-                                  c.selectedItems.refresh();
-                                } else {
-                                  c.selectedItems.value.remove(e);
-                                  c.selectedItems.refresh();
-                                }
-                              },
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: c.selectedItems.value.map((e) {
+                return Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("${e.name}"),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: IconButton(
+                                icon: const Icon(Icons.remove),
+                                onPressed: () {
+                                  if (e.itemCount > 1) {
+                                    e.itemCount--;
+                                    c.selectedItems.refresh();
+                                  } else {
+                                    c.selectedItems.value.remove(e);
+                                    c.selectedItems.refresh();
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                          Text("${e.itemCount}"),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {
-                                if (e.itemCount < 10) {
-                                  e.itemCount++;
-                                  c.selectedItems.refresh();
-                                }
-                              },
+                            Text("${e.itemCount}"),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: IconButton(
+                                icon: const Icon(Icons.add),
+                                onPressed: () {
+                                  if (e.itemCount < 10) {
+                                    e.itemCount++;
+                                    c.selectedItems.refresh();
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ));
-            }).toList(),
+                          ],
+                        ),
+                      ],
+                    ));
+              }).toList(),
+            ),
           );
         }
       }),

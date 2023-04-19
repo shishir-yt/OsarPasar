@@ -63,7 +63,7 @@ class ActiveBookingScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     image: const DecorationImage(
                       image: AssetImage(
-                        ImagePath.backgroung,
+                        ImagePath.background,
                       ),
                       fit: BoxFit.fill,
                     ),
