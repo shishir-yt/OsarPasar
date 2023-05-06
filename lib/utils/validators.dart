@@ -19,11 +19,15 @@ class Validators {
   }
 
   static String? checkPasswordField(String? fieldContent) {
+    RegExp pass_valid = RegExp(r"(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.\W)");
     if (fieldContent!.isEmpty) {
       return 'This field is required';
-    } else if (fieldContent.length < 6) {
-      return 'The password should be at least 6 digits';
+    } else if (fieldContent.length < 8) {
+      return 'The password should be at least 8 digits';
     }
+    // else if (pass_valid.hasMatch(fieldContent)) {
+    //   return 'Password should contain Capital Letter,\nSmall Letter,Numeric & Special Character';
+    // }
     return null;
   }
 

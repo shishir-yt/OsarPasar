@@ -8,6 +8,7 @@ class ServiceProvider {
   String? name;
   String? phoneNumber;
   String? email;
+  String? profileImage;
   String? emailVerifiedAt;
   String? isAdmin;
   String? createdAt;
@@ -18,6 +19,7 @@ class ServiceProvider {
       this.name,
       this.phoneNumber,
       this.email,
+      this.profileImage,
       this.emailVerifiedAt,
       this.isAdmin,
       this.createdAt,
@@ -28,6 +30,7 @@ class ServiceProvider {
     name = json['name'];
     phoneNumber = json['phone_number'];
     email = json['email'];
+    profileImage = json['profile_image'];
     emailVerifiedAt = json['email_verified_at'];
     isAdmin = json['is_admin'];
     createdAt = json['created_at'];
@@ -40,6 +43,7 @@ class ServiceProvider {
     data['name'] = name;
     data['phone_number'] = phoneNumber;
     data['email'] = email;
+    data['profile_image'] = profileImage;
     data['email_verified_at'] = emailVerifiedAt;
     data['is_admin'] = isAdmin;
     data['created_at'] = createdAt;

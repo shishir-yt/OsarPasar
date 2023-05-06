@@ -1,5 +1,5 @@
 class OsarPasarAPI {
-  static var baseUrl = "http://192.168.1.75:8000/api";
+  static var baseUrl = "http://192.168.1.71:8000/api";
   static String register = "$baseUrl/register";
   static String login = "$baseUrl/login";
   static String serviceProvider = "$baseUrl/service-providers";
@@ -10,4 +10,5 @@ class OsarPasarAPI {
   static String notificationList = "$baseUrl/notifications/list";
   static String orderRequest = "$baseUrl/active-requests";
   static String activeBookings = "$baseUrl/active-bookings";
+  static String updateProfile = "$baseUrl/update-profile";
 }

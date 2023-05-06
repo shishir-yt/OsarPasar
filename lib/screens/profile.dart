@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:osar_pasar/controller/profile_controller.dart';
 import '../utils/colors.dart';
 import '../utils/validators.dart';
 import '../widgets/custom_text_field.dart';
@@ -9,7 +10,7 @@ class EditProfile extends StatelessWidget {
   static const String routeName = "/edit-profile";
   EditProfile({super.key});
 
-  // final c = Get.put(EditProfileController());
+  final c = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class EditProfile extends StatelessWidget {
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: c.submit,
             child: const Text("Save"),
           ),
         ],
@@ -47,82 +48,87 @@ class EditProfile extends StatelessWidget {
           // key: c.formKey,
           child: Padding(
             padding: const EdgeInsets.all(30.0),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(60),
-                  child:
-                      //  (c.image.value != null)
-                      //     ? Image.file(
-                      //         c.image.value!,
-                      //         fit: BoxFit.cover,
-                      //         height: 120,
-                      //         width: 120,
-                      //       )
-                      //     :
-                      CachedNetworkImage(
-                    // imageUrl: c.user.value?.profileImageUrl ?? "",
-                    imageUrl: "https://picsum.photos/seed/picsum/200/300",
-                    fit: BoxFit.cover,
-                    height: 120,
-                    width: 120,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Image.network(
-                      "https://picsum.photos/seed/picsum/200/300",
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 120,
+            child: Form(
+              key: c.formKey,
+              child: Column(
+                children: [
+                  Obx(
+                    () => CircleAvatar(
+                      radius: 45,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(60),
+                        child: (c.image.value != null)
+                            ? Image.file(
+                                c.image.value!,
+                                fit: BoxFit.cover,
+                                height: 120,
+                                width: 120,
+                              )
+                            : CachedNetworkImage(
+                                imageUrl: c.user.value?.profileImage ?? "",
+                                // imageUrl: "https://picsum.photos/seed/picsum/200/300",
+                                fit: BoxFit.cover,
+                                height: 120,
+                                width: 120,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(
+                                  Icons.person,
+                                  size: 64,
+                                ),
+                              ),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 17,
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Change Avatar",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.primaryColor),
+                  const SizedBox(
+                    height: 17,
                   ),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                CustomTextField(
-                  // controller: c.nameController,
-                  hint: "Full Name",
-                  textInputAction: TextInputAction.next,
-                  textInputType: TextInputType.name,
-                  validator: Validators.checkFieldEmpty,
-                ),
-                const SizedBox(
-                  height: 17,
-                ),
-                CustomTextField(
-                  // controller: c.emailController,
-                  // labelText: "Email",
-                  hint: "Email",
-                  // readOnly: false,
-                  // border: AppColors.lGrey,
-                  textInputAction: TextInputAction.next,
-                  textInputType: TextInputType.emailAddress,
-                  validator: Validators.checkFieldEmpty,
-                ),
-                const SizedBox(
-                  height: 17,
-                ),
-                CustomTextField(
-                  // controller: c.phoneController,
-                  hint: "Phone Number",
-                  textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.number,
-                  validator: Validators.checkPhoneField,
-                ),
-              ],
+                  TextButton(
+                    onPressed: c.pickImage,
+                    child: const Text(
+                      "Change Avatar",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.primaryColor),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  CustomTextField(
+                    controller: c.nameController,
+                    hint: "Full Name",
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.name,
+                    validator: Validators.checkFieldEmpty,
+                  ),
+                  const SizedBox(
+                    height: 17,
+                  ),
+                  CustomTextField(
+                    controller: c.emailController,
+                    // labelText: "Email",
+                    hint: "Email",
+                    readOnly: true,
+                    // border: AppColors.lGrey,
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.emailAddress,
+                    validator: Validators.checkFieldEmpty,
+                  ),
+                  const SizedBox(
+                    height: 17,
+                  ),
+                  CustomTextField(
+                    controller: c.phoneController,
+                    hint: "Phone Number",
+                    textInputAction: TextInputAction.done,
+                    textInputType: TextInputType.number,
+                    validator: Validators.checkPhoneField,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

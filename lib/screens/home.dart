@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      ", ${coreController.currentUser!.name?.capitalize}",
+                      ", ${coreController.currentUser.value!.name?.capitalize}",
                       style: textTheme.titleMedium!.copyWith(
                         fontSize: 16,
                       ),
@@ -154,7 +154,7 @@ class HomePage extends StatelessWidget {
                   HomeCard(
                     text: "Active Booking",
                     iconData: FontAwesomeIcons.receipt,
-                    onTap: (() => Get.to(() =>  ActiveBookingScreen())),
+                    onTap: (() => Get.to(() => ActiveBookingScreen())),
                   ),
                 ],
               ),

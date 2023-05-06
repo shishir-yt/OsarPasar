@@ -5,6 +5,7 @@ class User {
   String? email;
   String? emailVerifiedAt;
   String? isAdmin;
+  String? profileImage;
   String? createdAt;
   String? updatedAt;
 
@@ -15,6 +16,7 @@ class User {
       this.email,
       this.emailVerifiedAt,
       this.isAdmin,
+      this.profileImage,
       this.createdAt,
       this.updatedAt});
 
@@ -25,6 +27,7 @@ class User {
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
     isAdmin = json['is_admin'];
+    profileImage = json['profile_image'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -37,6 +40,7 @@ class User {
     data['email'] = email;
     data['email_verified_at'] = emailVerifiedAt;
     data['is_admin'] = isAdmin;
+    data['profile_image'] = profileImage;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;

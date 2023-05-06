@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:osar_pasar/controller/item_controller.dart';
@@ -55,7 +56,7 @@ class ServiceProviderScreen extends StatelessWidget {
                             c.serviceProviders[index];
                         return MaterialListCard(
                           // textTheme: textTheme,
-                          imgUrl: 'https://picsum.photos/100/100',
+                          imgUrl: serviceProvider.profileImage!,
                           readingTitle: serviceProvider.name!.toString(),
                           readingMaterial: serviceProvider.email!.toString(),
                           phoneNumber: "",
@@ -126,11 +127,17 @@ class MaterialListCard extends StatelessWidget {
                       ));
                 },
                 child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10)),
-                  child: Image.network(imgUrl, fit: BoxFit.cover),
-                ),
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10)),
+                    child: CachedNetworkImage(
+                      imageUrl: imgUrl,
+                      fit: BoxFit.cover,
+                      height: 100,
+                      width: 100,
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.warning),
+                    )),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -167,5 +174,3 @@ class MaterialListCard extends StatelessWidget {
     );
   }
 }
-
-

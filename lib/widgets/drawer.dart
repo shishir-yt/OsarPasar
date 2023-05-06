@@ -35,32 +35,39 @@ class MyDrawer extends StatelessWidget {
             ),
             child: Column(
               children: [
-                CircleAvatar(
-                  radius: 45,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.fill,
-                      imageUrl: 'https://picsum.photos/100/100',
-                      errorWidget: (context, url, error) => Image.asset(
-                        ImagePath.on_board3,
-                        fit: BoxFit.contain,
+                Obx(
+                  () => CircleAvatar(
+                    radius: 45,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(60),
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        height: 120,
+                        width: 120,
+                        imageUrl:
+                            coreController.currentUser.value?.profileImage ??
+                                "",
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.person,
+                          size: 64,
+                        ),
+                        // height: 87,
                       ),
-                      // height: 87,
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 15),
                   child: Center(
-                    child: Text(
-                      "${coreController.currentUser!.name?.capitalize}",
+                      child: Obx(
+                    () => Text(
+                      "${coreController.currentUser.value!.name?.capitalize}",
                       style: textTheme.titleMedium!.copyWith(
                         fontSize: 14,
                         color: Colors.white,
                       ),
                     ),
-                  ),
+                  )),
                 ),
               ],
             ),

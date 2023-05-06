@@ -65,6 +65,7 @@ class CustomTextField extends StatelessWidget {
         }
       },
       decoration: InputDecoration(
+          errorMaxLines: 5,
           prefixIcon: (prefixIcon != null) ? prefixIcon : null,
           suffixIcon: (suffixIcon != null) ? suffixIcon : null,
           contentPadding: const EdgeInsets.all(16),
